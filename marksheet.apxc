@@ -1,0 +1,58 @@
+public class Student {
+    public String name;
+    public Decimal subject1;
+    public Decimal subject2;
+    public Decimal subject3;
+
+    public Student(String name, Decimal subject1, Decimal subject2, Decimal subject3) {
+        this.name = name;
+        this.subject1 = subject1;
+        this.subject2 = subject2;
+        this.subject3 = subject3;
+    }
+
+    public Decimal getTotalMarks() {
+        return subject1 + subject2 + subject3;
+    }
+
+    public Decimal getAverageMarks() {
+        return getTotalMarks() / 3;
+    }
+}
+
+public class StudentMarkSheet {
+    public static List<Map<String, Object>> generateMarkSheet(List<Student> students) {
+        List<Map<String, Object>> markSheet = new List<Map<String, Object>>();
+
+        for (Student student : students) {
+            Map<String, Object> entry = new Map<String, Object>();
+            entry.put('Name', student.name);
+            entry.put('Total Marks', student.getTotalMarks());
+            entry.put('Average Marks', student.getAverageMarks());
+            entry.put('Subject 1', student.subject1);
+            entry.put('Subject 2', student.subject2);
+            entry.put('Subject 3', student.subject3);
+
+            markSheet.add(entry);
+        }
+
+        return markSheet;
+    }
+}
+
+// Test the Student and StudentMarkSheet classes
+List<Student> students = new List<Student>();
+students.add(new Student('John Doe', 85, 90, 78));
+students.add(new Student('Jane Smith', 92, 88, 85));
+students.add(new Student('Sam Brown', 76, 80, 79));
+
+List<Map<String, Object>> markSheet = StudentMarkSheet.generateMarkSheet(students);
+
+for (Map<String, Object> entry : markSheet) {
+    System.debug('Student Name: ' + entry.get('Name'));
+    System.debug('Total Marks: ' + entry.get('Total Marks'));
+    System.debug('Average Marks: ' + entry.get('Average Marks'));
+    System.debug('Subject 1: ' + entry.get('Subject 1'));
+    System.debug('Subject 2: ' + entry.get('Subject 2'));
+    System.debug('Subject 3: ' + entry.get('Subject 3'));
+}
