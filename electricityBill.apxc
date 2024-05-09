@@ -1,0 +1,25 @@
+public class ElectricityBillCalculator {
+    public static Decimal calculateBill(Decimal units) {
+        Decimal rate1 = 0.10; // Rate for first 100 units
+        Decimal rate2 = 0.15; // Rate for the next 100 units
+        Decimal rate3 = 0.20; // Rate for units above 200
+
+        Decimal bill = 0;
+
+        if (units <= 100) {
+            bill = units * rate1;
+        } else if (units <= 200) {
+            bill = (100 * rate1) + ((units - 100) * rate2);
+        } else {
+            bill = (100 * rate1) + (100 * rate2) + ((units - 200) * rate3);
+        }
+
+        return bill;
+    }
+}
+
+// Test the ElectricityBillCalculator class
+Decimal unitsConsumed = 250; // Units consumed
+Decimal bill = ElectricityBillCalculator.calculateBill(unitsConsumed);
+
+System.debug('For ' + unitsConsumed + ' units, the electricity bill is: ' + bill);

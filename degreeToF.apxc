@@ -1,0 +1,11 @@
+public class TemperatureConverter {
+    public static Decimal celsiusToFahrenheit(Decimal celsius) {
+        return (celsius * (9 / 5)) + 32;
+    }
+}
+
+// Test the TemperatureConverter class
+Decimal celsius = 25; // Temperature in Celsius
+Decimal fahrenheit = TemperatureConverter.celsiusToFahrenheit(celsius);
+
+System.debug(celsius + ' degrees Celsius is equal to ' + fahrenheit + ' degrees Fahrenheit');
